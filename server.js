@@ -16,4 +16,19 @@ server.get("/games", async (req, res) => {
     res.status(500).json({ error: "couldn't fetch your data!" });
   }
 });
+
+server.post("/games", async (req, res) => {
+  let game = req.body;
+  try {
+    if (!game.title || !game.genre) {
+      res.status(422).json({ error: "remember to enter a title and genre!" });
+    } else {
+      game = await Games.insert(game);
+      res.status(201).json({ game });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "couldn't add game!" });
+  }
+});
+
 module.exports = server;
