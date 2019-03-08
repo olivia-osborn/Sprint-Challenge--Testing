@@ -58,5 +58,13 @@ describe("server.js", () => {
         .send(game);
       expect(res.status).toBe(422);
     });
+
+    it("should return JSON", async () => {
+      const game = { title: "pokemon", genre: "video", releaseYear: "2001" };
+      const res = await request(server)
+        .post("/games")
+        .send(game);
+      expect(res.type).toBe("application/json");
+    });
   });
 });
