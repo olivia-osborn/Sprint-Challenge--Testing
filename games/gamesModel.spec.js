@@ -14,9 +14,8 @@ describe("games model", () => {
     });
 
     it("should insert the provided game into the db", async () => {
-      let game = await Games.insert({ title: "monopoly", genre: "board" });
-      const games = await db("games");
-      expect(game.title).toBe("monopoly");
+      let game = await Games.insert({ title: "pacman", genre: "arcade" });
+      expect(game.title).toBe("pacman");
     });
   });
 });
